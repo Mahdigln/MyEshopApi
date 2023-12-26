@@ -17,19 +17,17 @@ public abstract class GenericRepository<T> : IGenericRepository<T> where T : cla
         => _context = context;
 
     [return: MaybeNull]
-    public async Task<T> Get(int id)
-        => await _context.Set<T>().FindAsync(id);
+    public async Task<T> Get(int id, CancellationToken cancellationToken)   
+        => await _context.Set<T>().FindAsync(id, cancellationToken);
 
-    public async Task<IEnumerable<T>> GetAll()
-        => await _context.Set<T>().ToListAsync();
+    public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken)
+        => await _context.Set<T>().ToListAsync(cancellationToken);
 
-    public async Task Add(T entity)
-        => await _context.Set<T>().AddAsync(entity);
+    public async Task Add(T entity,CancellationToken cancellationToken)
+        => await _context.Set<T>().AddAsync(entity,cancellationToken);
 
-
-    
     public void Delete(T entity)
-        => _context.Set<T>().Remove(entity);
+        =>  _context.Set<T>().Remove(entity);
 
     public void Update(T entity)
         => _context.Set<T>().Update(entity);

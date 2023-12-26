@@ -12,7 +12,7 @@ public class Address
     public string Street { get; set; }
     public string ZipCode { get; set; }
 
-    // Navigation Property
+    // Navigation Propertybb
     public Customer Customer { get; set; }
     public int CustomerId { get; set; }
 }

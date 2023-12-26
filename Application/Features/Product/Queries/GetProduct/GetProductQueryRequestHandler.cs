@@ -17,7 +17,7 @@ public class GetProductQueryRequestHandler : IRequestHandler<GetProduct.GetProdu
     }
     public async Task<List<ProductQueryResponse>> Handle(GetProduct.GetProductQueryRequest request, CancellationToken cancellationToken)
     {
-        IEnumerable<Domain.Models.Product> products = await _productRepository.GetAll();
+        IEnumerable<Domain.Models.Product> products = await _productRepository.GetAll(cancellationToken);
         if (products != null)
         {
             List<ProductQueryResponse> productDto = _mapper.Map<List<ProductQueryResponse>>(products);

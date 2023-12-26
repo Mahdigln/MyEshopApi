@@ -15,6 +15,7 @@ public static class ServiceCollectionExtensions
         return services
             //.AddTransient<IPropertyRepo, PropertyRepo>()
             .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<ICategoryRepository, CategoryRepository>()
             //.AddTransient<IProductRepository,CachingProductRepository>()
             .AddMemoryCache()
             .AddDbContext<ApplicationDbContext>(options => options

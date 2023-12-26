@@ -19,8 +19,8 @@ public class AddProductCommandRequestHandler : IRequestHandler<AddProductCommand
     {
         try
         {
-            Domain.Models.Product product = _mapper.Map<Domain.Models.Product>(commandRequest.AddProductModel);
-            await _productRepository.Add(product);
+           Domain.Models.Product product = _mapper.Map<Domain.Models.Product>(commandRequest);
+            await _productRepository.Add(product,cancellationToken);
             await _productRepository.Save();
             return true;
         }

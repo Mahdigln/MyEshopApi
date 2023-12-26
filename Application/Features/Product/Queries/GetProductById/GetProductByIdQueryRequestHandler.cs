@@ -17,7 +17,7 @@ public class GetProductByIdQueryRequestHandler : IRequestHandler<GetProductByIdQ
     }
     public async Task<ProductQueryResponse> Handle(GetProductByIdQueryRequest queryRequest, CancellationToken cancellationToken)
     {
-        Domain.Models.Product product = await _productRepository.Get(queryRequest.id);
+        Domain.Models.Product product = await _productRepository.Get(queryRequest.ProductId,cancellationToken);
 
         if (product is not null)
         {
