@@ -13,6 +13,9 @@ public class Address
     public string ZipCode { get; set; }
 
     // Navigation Propertybb
+    // Navigation Propertybb
+    // Navigation Propertybb
+    // Navigation Propertybb
     public Customer Customer { get; set; }
     public int CustomerId { get; set; }
 }
