@@ -1,5 +1,4 @@
 ﻿using Application.IRepositories;
-using Domain.Models;
 using Infrastructure.Contexts;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +12,11 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         return services
-            //.AddTransient<IPropertyRepo, PropertyRepo>()
+
             .AddScoped<IProductRepository, ProductRepository>()
             .AddScoped<ICategoryRepository, CategoryRepository>()
+            .AddScoped<IAddressRepository, AddressRepository>()
+            .AddScoped<ICustomerRepository, CustomerRepository>()
             //.AddTransient<IProductRepository,CachingProductRepository>()
             .AddMemoryCache()
             .AddDbContext<ApplicationDbContext>(options => options

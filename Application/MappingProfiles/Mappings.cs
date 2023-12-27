@@ -1,4 +1,5 @@
-﻿using Application.Features.Category.Commands.AddCategory;
+﻿using Application.Features.Address.Commands.AddAddress;
+using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
@@ -9,7 +10,7 @@ using Domain.Models;
 
 namespace Application.MappingProfiles;
 
-public class Mappings:Profile
+public class Mappings : Profile
 {
     public Mappings()
     {
@@ -27,6 +28,13 @@ public class Mappings:Profile
         CreateMap<AddCategoryCommandRequest, Category>().ReverseMap();
         CreateMap<CategoryQueryResponse, Category>().ReverseMap();
         CreateMap<UpdateCategoryCommandRequest, Category>().ReverseMap();
+
+        #endregion
+
+        #region Address
+
+        CreateMap<AddAddressCommandRequest, Address>().ReverseMap();
+
 
         #endregion
     }

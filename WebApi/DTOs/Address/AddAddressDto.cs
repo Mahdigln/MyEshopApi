@@ -1,0 +1,10 @@
+﻿namespace WebApi.DTOs.Address;
+
+public class AddAddressDto
+{
+    public string State { get; set; }
+    public string City { get; set; }
+    public string Street { get; set; }
+    public string ZipCode { get; set; }
+
+}
