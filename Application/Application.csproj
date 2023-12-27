@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Address\Commands\AddAddress\" />
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
     <Folder Include="Features\Address\Queries\GetAddress\" />
     <Folder Include="Features\Address\Queries\GetAddressById\" />
