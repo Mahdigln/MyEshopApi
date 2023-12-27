@@ -1,4 +1,8 @@
 ﻿using Application.Features.Address.Commands.AddAddress;
+using Application.Features.Address.Commands.DeleteAddress;
+using Application.Features.Address.Commands.UpdateAddress;
+using Application.Features.Address.Queries.GetAddress;
+using Application.Features.Address.Queries.GetAddressById;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,12 +30,59 @@ namespace WebApi.Controllers
             command.CustomerId = customerId;
             bool isSuccessful = await _mediator.Send(command, cancellationToken);
             if (isSuccessful)
-                return Ok();
+                return Ok(command);
 
             return BadRequest();
-
-
         }
+
+        [HttpGet("GetAddress")]
+        public async Task<IActionResult> GetAddress(CancellationToken cancellationToken)
+        {
+            var address = await _mediator.Send(new GetAddressQueryRequest(), cancellationToken);
+            if (address is not null)
+                return Ok(address);
+
+            return BadRequest();
+        }
+
+
+        [HttpGet("GetAddressById/{addressId}")]
+        public async Task<IActionResult> GetAddress([FromRoute] int addressId, CancellationToken cancellationToken)
+        {
+            var address = await _mediator.Send(new GetAddressByIdQueryRequest(addressId), cancellationToken);
+            if (address != null)
+            {
+                return Ok(address);
+            }
+            return NotFound();
+        }
+
+        [HttpPut("UpdateAddress/{addressId}")]
+        public async Task<IActionResult> UpdateAddress(int addressId, [FromForm] UpdateAddressDto updateAddress,
+            CancellationToken cancellationToken)
+        {
+            var command = _mapper.Map(updateAddress, new UpdateAddressCommandRequest());
+            command.AddressId = addressId;
+            bool isSuccessful = await _mediator.Send(command, cancellationToken);
+            if (isSuccessful)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpDelete("DeleteAddress/{addressId}")]
+        public async Task<IActionResult> DeleteAddress(int addressId, CancellationToken cancellationToken)
+        {
+            bool isSuccessful = await _mediator.Send(new DeleteAddressCommandRequest(addressId), cancellationToken);
+            if (isSuccessful)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
+
 
     }
 }

@@ -1,13 +1,11 @@
 ﻿using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.DeleteProduct;
 using Application.Features.Product.Commands.UpdateProduct;
-using Application.Features.Product.Queries;
 using Application.Features.Product.Queries.GetProduct;
 using Application.Features.Product.Queries.GetProductById;
 using Application.Response.Product;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs.Product;
 
@@ -37,10 +35,10 @@ namespace WebApi.Controllers
         //}
 
         [HttpPost("AddProduct")]
-        public async Task<IActionResult> AddProduct([FromForm] AddProductDto model,CancellationToken cancellationToken)
+        public async Task<IActionResult> AddProduct([FromForm] AddProductDto model, CancellationToken cancellationToken)
         {
-            var command = _mapper.Map(model,new AddProductCommandRequest());
-            bool isSuccessful = await _mediator.Send(command,cancellationToken);
+            var command = _mapper.Map(model, new AddProductCommandRequest());
+            bool isSuccessful = await _mediator.Send(command, cancellationToken);
             if (isSuccessful)
             {
                 return Ok();
@@ -60,9 +58,9 @@ namespace WebApi.Controllers
         //    return NotFound();
         //}
         [HttpGet("GetProductById/{id}")]
-        public async Task<IActionResult> GetProduct([FromRoute]int id,CancellationToken cancellationToken)
+        public async Task<IActionResult> GetProduct([FromRoute] int id, CancellationToken cancellationToken)
         {
-            ProductQueryResponse product = await _mediator.Send(new GetProductByIdQueryRequest(id),cancellationToken);
+            ProductQueryResponse product = await _mediator.Send(new GetProductByIdQueryRequest(id), cancellationToken);
             if (product != null)
             {
                 return Ok(product);
@@ -73,7 +71,7 @@ namespace WebApi.Controllers
         [HttpGet("GetProducts")]
         public async Task<IActionResult> GetProducts(CancellationToken cancellationToken)
         {
-            List<ProductQueryResponse> products = await _mediator.Send(new GetProductQueryRequest(),cancellationToken);
+            List<ProductQueryResponse> products = await _mediator.Send(new GetProductQueryRequest(), cancellationToken);
             if (products != null)
             {
                 return Ok(products);
@@ -82,11 +80,11 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("UpdateGetProducts/{productId}")]
-        public async Task<IActionResult> UpdateProduct(int productId,[FromForm]UpdateProductDto updateProduct,CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateProduct(int productId, [FromForm] UpdateProductDto updateProduct, CancellationToken cancellationToken)
         {
             var command = _mapper.Map(updateProduct, new UpdateProductCommandRequest());
-            command.ProductId=productId;
-            bool IsSuccessFull = await _mediator.Send(command,cancellationToken);
+            command.ProductId = productId;
+            bool IsSuccessFull = await _mediator.Send(command, cancellationToken);
             if (IsSuccessFull)
             {
                 return Ok();
@@ -99,7 +97,7 @@ namespace WebApi.Controllers
         {
             // bool isSuccessfull = await _mediator.Send(new DeleteProductCommandRequest(){ProductId = productId}); //whit out constructor
             // bool isSuccessfull = await _mediator.Send(new DeleteProductCommandRequest(productId)); //whit  constructor or record
-            bool isSuccessfull = await _mediator.Send(new DeleteProductCommandRequest(productId),cancellationToken);
+            bool isSuccessfull = await _mediator.Send(new DeleteProductCommandRequest(productId), cancellationToken);
 
             if (isSuccessfull)
             {

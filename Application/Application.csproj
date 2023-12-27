@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
-    <Folder Include="Features\Address\Queries\GetAddress\" />
-    <Folder Include="Features\Address\Queries\GetAddressById\" />
     <Folder Include="Features\Category\Commands\DeleteCategory\" />
     <Folder Include="Features\Category\Commands\UpdateCategory\" />
     <Folder Include="Features\Product\Validators\" />

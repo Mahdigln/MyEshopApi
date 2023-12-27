@@ -1,4 +1,5 @@
 ﻿using Application.Features.Address.Commands.AddAddress;
+using Application.Features.Address.Commands.UpdateAddress;
 using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Product.Commands.AddProduct;
@@ -31,6 +32,7 @@ public class Mappings : Profile
         #region Address
 
         CreateMap<AddAddressCommandRequest, AddAddressDto>().ReverseMap();
+        CreateMap<UpdateAddressCommandRequest, UpdateAddressDto>().ReverseMap();
 
         #endregion
 

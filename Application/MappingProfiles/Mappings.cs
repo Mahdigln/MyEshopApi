@@ -1,8 +1,10 @@
 ﻿using Application.Features.Address.Commands.AddAddress;
+using Application.Features.Address.Commands.UpdateAddress;
 using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
+using Application.Response.Address;
 using Application.Response.Category;
 using Application.Response.Product;
 using AutoMapper;
@@ -34,6 +36,8 @@ public class Mappings : Profile
         #region Address
 
         CreateMap<AddAddressCommandRequest, Address>().ReverseMap();
+        CreateMap<AddressQueryResponse, Address>().ReverseMap();
+        CreateMap<UpdateAddressCommandRequest, Address>().ReverseMap();
 
 
         #endregion
