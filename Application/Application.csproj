@@ -14,8 +14,10 @@
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
     <Folder Include="Features\Category\Commands\DeleteCategory\" />
     <Folder Include="Features\Category\Commands\UpdateCategory\" />
+    <Folder Include="Features\Order\Queries\GetOrderById\" />
     <Folder Include="Features\Product\Validators\" />
     <Folder Include="MappingProfiles\" />
+    <Folder Include="Response\Order\" />
   </ItemGroup>
 
   <ItemGroup>

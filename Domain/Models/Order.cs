@@ -8,7 +8,8 @@ public class Order
     public int OrderId { get; set; }
     public DateTime OrderDate { get; set; }
     public bool IsFinally { get; set; }
-
+    [Required]
+    public decimal Sum { get; set; }
     // Navigation Properties
     public List<OrderItem> OrderItems { get; set; }
     public Customer Customer { get; set; }

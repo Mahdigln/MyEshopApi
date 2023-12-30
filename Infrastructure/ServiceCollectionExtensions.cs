@@ -17,6 +17,8 @@ public static class ServiceCollectionExtensions
             .AddScoped<ICategoryRepository, CategoryRepository>()
             .AddScoped<IAddressRepository, AddressRepository>()
             .AddScoped<ICustomerRepository, CustomerRepository>()
+            .AddScoped<IOrderRepository, OrderRepository>()
+            .AddScoped<IOrderItemRepository, OrderItemRepository>()
             //.AddTransient<IProductRepository,CachingProductRepository>()
             .AddMemoryCache()
             .AddDbContext<ApplicationDbContext>(options => options
