@@ -9,7 +9,7 @@ public class OrderItem
     [Required]
     public int Quantity { get; set; }
     [Required]
-    public int Price { get; set; }
+    public decimal Price { get; set; }
     // Navigation Properties
     public Product Product { get; set; }
     public int ProductId { get; set; }

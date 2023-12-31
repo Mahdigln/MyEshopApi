@@ -3,11 +3,13 @@ using Application.Features.Address.Commands.UpdateAddress;
 using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Order.Commands.AddOrder;
+using Application.Features.OrderItem.Commands.AddOrderItem;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
 using Application.Response.Address;
 using Application.Response.Category;
 using Application.Response.Order;
+using Application.Response.OrderItem;
 using Application.Response.Product;
 using AutoMapper;
 using Domain.Models;
@@ -46,6 +48,13 @@ public class Mappings : Profile
 
         CreateMap<AddOrderCommandRequest, Order>().ReverseMap();
         CreateMap<OrderQueryResponse, Order>().ReverseMap();
+
+        #endregion
+
+        #region OrderItem
+
+        CreateMap<AddOrderItemCommandRequest, OrderItem>().ReverseMap();
+        CreateMap<OrderItemQueryResponse, OrderItem>().ReverseMap();
 
         #endregion
     }
