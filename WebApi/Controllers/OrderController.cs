@@ -1,4 +1,5 @@
 ﻿using Application.Features.Order.Commands.AddOrder;
+using Application.Features.Order.Commands.DeleteOrder;
 using Application.Features.Order.Queries.GetOrder;
 using Application.Features.Order.Queries.GetOrderById;
 using AutoMapper;
@@ -51,6 +52,17 @@ namespace WebApi.Controllers
             if (order != null)
             {
                 return Ok(order);
+            }
+            return NotFound();
+        }
+        [HttpDelete("DeleteOrder/{orderId}")]
+        public async Task<IActionResult> DeleteOrder(int orderId, CancellationToken cancellationToken)
+        {
+            bool isSuccessful = await _mediator.Send(new DeleteOrderCommandRequest(orderId), cancellationToken);
+
+            if (isSuccessful)
+            {
+                return Ok();
             }
             return NotFound();
         }
