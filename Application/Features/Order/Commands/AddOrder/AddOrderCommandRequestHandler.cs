@@ -50,7 +50,7 @@ public class AddOrderCommandRequestHandler : IRequestHandler<AddOrderCommandRequ
                         OrderId = order.OrderId,
                         ProductId = product.ProductId,
                         Quantity = 1,
-                        Price = (int)product.Price
+                        Price = product.Price
                     };
 
                     await _orderItemRepository.Add(orderItem, cancellationToken);

@@ -2,17 +2,10 @@
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Category.Queries.GetCategory;
 using Application.Features.Category.Queries.GetCategoryById;
-using Application.Features.Product.Commands.UpdateProduct;
-using Application.Features.Product.Queries.GetProduct;
-using Application.Features.Product.Queries.GetProductById;
-using Application.Response.Category;
-using Application.Response.Product;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs.Category;
-using WebApi.DTOs.Product;
 
 namespace WebApi.Controllers
 {
@@ -33,7 +26,7 @@ namespace WebApi.Controllers
         {
             // var command =_mapper.Map(model, new AddCategoryCommandRequest(model.Name));
             var command = _mapper.Map(model, new AddCategoryCommandRequest(model.Name));
-            bool isSuccessfull = await _mediator.Send(command,cancellationToken);
+            bool isSuccessfull = await _mediator.Send(command, cancellationToken);
             if (isSuccessfull)
             {
                 return Ok();
@@ -42,9 +35,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("GetCategory")]
-        public async Task<IActionResult> GetProducts(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetCategory(CancellationToken cancellationToken)
         {
-            var category = await _mediator.Send(new GetCategoryQueryRequest(),cancellationToken);
+            var category = await _mediator.Send(new GetCategoryQueryRequest(), cancellationToken);
             if (category is not null)
             {
                 return Ok(category);
@@ -53,9 +46,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("GetCategoryById/{categoryId}")]
-        public async Task<IActionResult> GetCategory([FromRoute] int categoryId,CancellationToken cancellationToken)
+        public async Task<IActionResult> GetCategory([FromRoute] int categoryId, CancellationToken cancellationToken)
         {
-            var category = await _mediator.Send(new GetCategoryByIdQueryRequest(categoryId),cancellationToken);
+            var category = await _mediator.Send(new GetCategoryByIdQueryRequest(categoryId), cancellationToken);
             if (category != null)
             {
                 return Ok(category);
@@ -67,8 +60,8 @@ namespace WebApi.Controllers
         public async Task<IActionResult> UpdateCategory(int categoryId, UpdateCategoryDto updateCategory,
             CancellationToken cancellationToken)
         {
-            var command = _mapper.Map(updateCategory, new UpdateCategoryCommandRequest(categoryId,updateCategory.Name));
-         
+            var command = _mapper.Map(updateCategory, new UpdateCategoryCommandRequest(categoryId, updateCategory.Name));
+
             bool IsSuccessFull = await _mediator.Send(command, cancellationToken);
             if (IsSuccessFull)
             {
