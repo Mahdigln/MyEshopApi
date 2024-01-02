@@ -9,7 +9,6 @@ public class GetProductQueryRequestHandler : IRequestHandler<GetProduct.GetProdu
 {
     private readonly IMapper _mapper;
     private readonly IProductRepository _productRepository;
-
     public GetProductQueryRequestHandler(IMapper mapper, IProductRepository productRepository)
     {
         _mapper = mapper;
@@ -17,12 +16,23 @@ public class GetProductQueryRequestHandler : IRequestHandler<GetProduct.GetProdu
     }
     public async Task<List<ProductQueryResponse>> Handle(GetProduct.GetProductQueryRequest request, CancellationToken cancellationToken)
     {
-        IEnumerable<Domain.Models.Product> products = await _productRepository.GetAll(cancellationToken);
-        if (products != null)
+        var productList = await _productRepository.GetAllByQueryFilter(request.ProductQueryParametersResponse, cancellationToken);
+        if (productList != null)
         {
-            List<ProductQueryResponse> productDto = _mapper.Map<List<ProductQueryResponse>>(products);
+            List<ProductQueryResponse> productDto = _mapper.Map<List<ProductQueryResponse>>(productList);
             return productDto;
         }
         return null;
     }
+
+    //public async Task<List<ProductQueryResponse>> Handle(GetProduct.GetProductQueryRequest request, CancellationToken cancellationToken)
+    //{
+    //    IEnumerable<Domain.Models.Product> products = await _productRepository.GetAll(cancellationToken);
+    //    if (products != null)
+    //    {
+    //        List<ProductQueryResponse> productDto = _mapper.Map<List<ProductQueryResponse>>(products);
+    //        return productDto;
+    //    }
+    //    return null;
+    //}
 }

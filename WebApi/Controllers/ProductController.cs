@@ -2,6 +2,7 @@
 using Application.Features.Product.Commands.DeleteProduct;
 using Application.Features.Product.Commands.UpdateProduct;
 using Application.Features.Product.Queries.GetProduct;
+//using Application.Features.Product.Queries.GetProduct;
 using Application.Features.Product.Queries.GetProductById;
 using Application.Response.Product;
 using AutoMapper;
@@ -68,10 +69,23 @@ namespace WebApi.Controllers
             return NotFound();
         }
 
+        //[HttpGet("GetProducts")]
+        //public async Task<IActionResult> GetProducts( CancellationToken cancellationToken)
+        //{
+        //    //List<ProductQueryResponse> products = await _mediator.Send(new GetProductQueryRequest(), cancellationToken);
+        //    //if (products != null)
+        //    //{
+        //    //    return Ok(products);
+        //    //}
+        //    return NotFound();
+        //}
+
         [HttpGet("GetProducts")]
-        public async Task<IActionResult> GetProducts(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetProducts([FromQuery] ProductQueryParametersDto productQueryParameters, CancellationToken cancellationToken)
         {
-            List<ProductQueryResponse> products = await _mediator.Send(new GetProductQueryRequest(), cancellationToken);
+            var command = _mapper.Map(productQueryParameters, new ProductQueryParametersResponse());
+
+            List<ProductQueryResponse> products = await _mediator.Send(new GetProductQueryRequest(command), cancellationToken);
             if (products != null)
             {
                 return Ok(products);

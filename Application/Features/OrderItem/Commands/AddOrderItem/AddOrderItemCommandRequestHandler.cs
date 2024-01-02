@@ -27,6 +27,8 @@ public class AddOrderItemCommandRequestHandler : IRequestHandler<AddOrderItemCom
             {
                 orderItem = _mapper.Map<Domain.Models.OrderItem>(request);
                 orderItem.Price = product.Price;
+                var order = await _orderRepository.Get(request.OrderId, cancellationToken);
+                order.ItemCount += 1;
                 await _orderItemRepository.Add(orderItem, cancellationToken);
                 await _orderItemRepository.Save();
             }

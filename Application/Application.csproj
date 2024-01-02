@@ -12,12 +12,15 @@
 
   <ItemGroup>
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
+    <Folder Include="Features\Address\Queries\GetAddressByCustomerId\" />
     <Folder Include="Features\Category\Commands\DeleteCategory\" />
     <Folder Include="Features\Category\Commands\UpdateCategory\" />
     <Folder Include="Features\OrderItem\Commands\DeleteOrderItem\" />
     <Folder Include="Features\Order\Queries\GetOrderById\" />
+    <Folder Include="Features\Payment\Queries\" />
     <Folder Include="Features\Product\Validators\" />
     <Folder Include="MappingProfiles\" />
+    <Folder Include="Response\Payment\" />
     <Folder Include="Response\OrderItem\" />
     <Folder Include="Response\Order\" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using Application.Features.Order.Commands.AddOrder;
 using Application.Features.OrderItem.Commands.AddOrderItem;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
+using Application.Response.Product;
 using AutoMapper;
 using WebApi.DTOs.Address;
 using WebApi.DTOs.Category;
@@ -22,7 +23,7 @@ public class Mappings : Profile
         #region Product
         CreateMap<AddProductCommandRequest, AddProductDto>().ReverseMap();
         CreateMap<UpdateProductCommandRequest, UpdateProductDto>().ReverseMap();
-
+        CreateMap<ProductQueryParametersResponse, ProductQueryParametersDto>().ReverseMap();
         #endregion
 
 

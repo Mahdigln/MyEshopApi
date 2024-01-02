@@ -2,6 +2,7 @@
 using Application.Features.Address.Commands.DeleteAddress;
 using Application.Features.Address.Commands.UpdateAddress;
 using Application.Features.Address.Queries.GetAddress;
+using Application.Features.Address.Queries.GetAddressByCustomerId;
 using Application.Features.Address.Queries.GetAddressById;
 using AutoMapper;
 using MediatR;
@@ -44,7 +45,15 @@ namespace WebApi.Controllers
 
             return BadRequest();
         }
+        [HttpGet("GetAddressByCustomer/{customerId}")]
+        public async Task<IActionResult> GetAddressByCustomer(int customerId,CancellationToken cancellationToken)
+        {
+            var address = await _mediator.Send(new GetAddressByICustomerIdQueryRequest(customerId), cancellationToken);
+            if (address is not null)
+                return Ok(address);
 
+            return BadRequest();
+        }
 
         [HttpGet("GetAddressById/{addressId}")]
         public async Task<IActionResult> GetAddress([FromRoute] int addressId, CancellationToken cancellationToken)
@@ -81,8 +90,5 @@ namespace WebApi.Controllers
             }
             return NotFound();
         }
-
-
-
     }
 }

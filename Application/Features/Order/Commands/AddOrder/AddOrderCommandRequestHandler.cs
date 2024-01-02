@@ -32,7 +32,8 @@ public class AddOrderCommandRequestHandler : IRequestHandler<AddOrderCommandRequ
                     CustomerId = request.CustomerId,
                     OrderDate = DateTime.Now,
                     IsFinally = false,
-                    Sum = 0
+                    Sum = 0,
+                    ItemCount = 1
                 };
                 await _orderRepository.Add(order, cancellationToken);
                 await _orderRepository.Save();
@@ -50,7 +51,7 @@ public class AddOrderCommandRequestHandler : IRequestHandler<AddOrderCommandRequ
                         OrderId = order.OrderId,
                         ProductId = product.ProductId,
                         Quantity = 1,
-                        Price = product.Price
+                        Price = product.Price,
                     };
 
                     await _orderItemRepository.Add(orderItem, cancellationToken);
