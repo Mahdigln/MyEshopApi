@@ -1,9 +1,8 @@
-﻿using MediatR;
+﻿using Application.Features.behavior.Product;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using FluentValidation;
-using Application.IRepositories;
-using Application.Features.behavior.Product;
 
 namespace Application;
 
@@ -16,7 +15,7 @@ public static class ServiceCollectionExtensions
             .AddAutoMapper(Assembly.GetExecutingAssembly())
             .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
             .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
-            ;
+        ;
 
 
     }
