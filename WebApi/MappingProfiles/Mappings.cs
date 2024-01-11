@@ -4,6 +4,7 @@ using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Order.Commands.AddOrder;
 using Application.Features.OrderItem.Commands.AddOrderItem;
+using Application.Features.OrderItem.Commands.AddSomeOrderItems;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
 using Application.Response.Product;
@@ -50,6 +51,7 @@ public class Mappings : Profile
         #region OrderItem
 
         CreateMap<AddOrderItemCommandRequest, AddOrderItemDto>().ReverseMap();
+        CreateMap<AddSomeOrderItemCommandRequest, AddSomeOrderItemsDto>().ReverseMap();
 
         #endregion
 

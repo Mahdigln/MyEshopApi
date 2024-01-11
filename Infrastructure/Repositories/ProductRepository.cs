@@ -1,18 +1,12 @@
 ﻿using Application.IRepositories;
+using Application.Response.Product;
 using Domain.Models;
 using Infrastructure.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Response.Product;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {
-    public class ProductRepository :GenericRepository<Product>, IProductRepository
+    public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
         protected new readonly ApplicationDbContext _context;
 
@@ -48,9 +42,15 @@ namespace Infrastructure.Repositories
 
         }
 
-        public async Task<bool> IsProductNameExist(string productName,CancellationToken cancellationToken)
+        public async Task<bool> IsProductNameExist(string productName, CancellationToken cancellationToken)
         {
-           return await _context.Products.AnyAsync(a => a.Name == productName, cancellationToken: cancellationToken);
+            return await _context.Products.AnyAsync(a => a.Name == productName, cancellationToken: cancellationToken);
         }
+
+        public async Task<List<Product>> GetProductIds(List<int> productIds, CancellationToken cancellationToken)
+        {
+            return await _context.Products.Where(entity => productIds.Contains(entity.ProductId)).ToListAsync(cancellationToken);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Features.OrderItem.Commands.AddOrderItem;
+using Application.Features.OrderItem.Commands.AddSomeOrderItems;
 using Application.Features.OrderItem.Commands.DeleteOrderItem;
 using Application.Features.OrderItem.Queries.GetOrderItem;
 using Application.Features.OrderItem.Queries.GetOrderItemById;
@@ -31,6 +32,17 @@ namespace WebApi.Controllers
 
             return BadRequest();
 
+        }
+
+        [HttpPost("AddSomeOrderItem")]
+        public async Task<IActionResult> AddSomeOrderItem(List<AddSomeOrderItemCommandRequestList> addOrderItems, CancellationToken cancellationToken)
+        {
+            var command = new AddSomeOrderItemCommandRequest { ItemList = addOrderItems };
+            bool isSuccessful = await _mediator.Send(command, cancellationToken);
+            if (isSuccessful)
+                return Ok(isSuccessful);
+
+            return BadRequest();
         }
         [HttpGet("GetOrderItemById/{orderItemId}")]
         public async Task<IActionResult> GetOrderItem([FromRoute] int orderItemId, CancellationToken cancellationToken)
