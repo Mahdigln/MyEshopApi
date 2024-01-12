@@ -1,4 +1,5 @@
-﻿using Application.Features.behavior.Product;
+﻿using Application.PipelineBehaviors.Product;
+using Application.PipelineBehaviors.Validation;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,10 +13,11 @@ public static class ServiceCollectionExtensions
     {
         services
             .AddScoped(typeof(IPipelineBehavior<,>), typeof(CreateProductBehavior<,>))
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>))
             .AddAutoMapper(Assembly.GetExecutingAssembly())
             .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
             .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
-        ;
+            ;
 
 
     }

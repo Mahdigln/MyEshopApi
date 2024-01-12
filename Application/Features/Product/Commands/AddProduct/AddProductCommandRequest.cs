@@ -1,9 +1,9 @@
-﻿using Application.Response.Product;
+﻿using Application.PipelineBehaviors.Validation;
 using MediatR;
 
 namespace Application.Features.Product.Commands.AddProduct;
 
-public class AddProductCommandRequest : IRequest<bool>,IProduct
+public class AddProductCommandRequest : IRequest<bool>, IProduct, IValidatable
 {
     public decimal Price { get; set; }
     public int Inventory { get; set; }

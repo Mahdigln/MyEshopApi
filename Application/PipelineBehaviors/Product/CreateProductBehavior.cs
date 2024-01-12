@@ -1,12 +1,9 @@
-﻿using MediatR;
-using System.Diagnostics;
-using System.Net.NetworkInformation;
-using Application.Features.Product.Commands.AddProduct;
+﻿using Application.Features.Product.Commands.AddProduct;
 using Application.IRepositories;
+using MediatR;
 
-namespace Application.Features.behavior.Product;
+namespace Application.PipelineBehaviors.Product;
 
-//public class CreateProductBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest :IProduct
 public class CreateProductBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IProduct, new()
 {
     private readonly IProductRepository _productRepository;
