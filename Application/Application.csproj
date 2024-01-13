@@ -13,6 +13,8 @@
   <ItemGroup>
     <Folder Include="Features\Address\Commands\UpdateAddress\" />
     <Folder Include="Features\Address\Queries\GetAddressByCustomerId\" />
+    <Folder Include="Features\Authentication\Commands\Register\" />
+    <Folder Include="Features\Authentication\Queries\" />
     <Folder Include="Features\Category\Commands\DeleteCategory\" />
     <Folder Include="Features\Category\Commands\UpdateCategory\" />
     <Folder Include="Features\OrderItem\Commands\DeleteOrderItem\" />

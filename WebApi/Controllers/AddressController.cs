@@ -6,6 +6,7 @@ using Application.Features.Address.Queries.GetAddressByCustomerId;
 using Application.Features.Address.Queries.GetAddressById;
 using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.DTOs.Address;
 
@@ -13,6 +14,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AddressController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -46,7 +48,7 @@ namespace WebApi.Controllers
             return BadRequest();
         }
         [HttpGet("GetAddressByCustomer/{customerId}")]
-        public async Task<IActionResult> GetAddressByCustomer(int customerId,CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAddressByCustomer(int customerId, CancellationToken cancellationToken)
         {
             var address = await _mediator.Send(new GetAddressByICustomerIdQueryRequest(customerId), cancellationToken);
             if (address is not null)

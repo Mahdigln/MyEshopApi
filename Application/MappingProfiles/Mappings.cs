@@ -1,5 +1,7 @@
 ﻿using Application.Features.Address.Commands.AddAddress;
 using Application.Features.Address.Commands.UpdateAddress;
+using Application.Features.Authentication.Commands.Register;
+using Application.Features.Authentication.Queries;
 using Application.Features.Category.Commands.AddCategory;
 using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Order.Commands.AddOrder;
@@ -59,6 +61,13 @@ public class Mappings : Profile
 
 
         CreateMap<OrderItemQueryResponse, OrderItem>().ReverseMap();
+
+        #endregion
+
+        #region Authentication
+
+        CreateMap<RegisterCommandRequest, Customer>().ReverseMap();
+        CreateMap<LoginQueryRequest, Customer>().ReverseMap();
 
         #endregion
     }
