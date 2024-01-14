@@ -4,14 +4,13 @@ using Domain.Models;
 using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repositories
-{
+namespace Infrastructure.Repositories;
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
         protected new readonly ApplicationDbContext _context;
 
         public ProductRepository(ApplicationDbContext context) : base(context)
-            => _context = context;
+            =>  _context = context;
 
         public async Task<IEnumerable<Product>> GetAllByQueryFilter(ProductQueryParametersResponse queryParameters, CancellationToken cancellationToken)
         {
@@ -46,11 +45,15 @@ namespace Infrastructure.Repositories
         {
             return await _context.Products.AnyAsync(a => a.Name == productName, cancellationToken: cancellationToken);
         }
-
-        public async Task<List<Product>> GetProductIds(List<int> productIds, CancellationToken cancellationToken)
+        public async Task<int> GetProductInventoryCount(int productId, CancellationToken cancellationToken)
         {
-            return await _context.Products.Where(entity => productIds.Contains(entity.ProductId)).ToListAsync(cancellationToken);
+            var productInventory = await _context.Products
+                .Where(c => c.ProductId == productId)
+                .Select(c => c.Inventory)
+                .SingleOrDefaultAsync(cancellationToken);
+
+            return productInventory;
         }
 
-    }
 }
+

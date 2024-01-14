@@ -7,6 +7,7 @@ using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Order.Commands.AddOrder;
 using Application.Features.OrderItem.Commands.AddOrderItem;
 using Application.Features.OrderItem.Commands.AddSomeOrderItems;
+using Application.Features.Payment.Commands.AddPayment;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
 using Application.Response.Product;
@@ -16,6 +17,7 @@ using WebApi.DTOs.Authentication;
 using WebApi.DTOs.Category;
 using WebApi.DTOs.Order;
 using WebApi.DTOs.OrderItem;
+using WebApi.DTOs.Payment;
 using WebApi.DTOs.Product;
 
 namespace WebApi.MappingProfiles;
@@ -47,14 +49,14 @@ public class Mappings : Profile
 
         #region Order
 
-        CreateMap<AddOrderCommandRequest, AddOrderDto>().ReverseMap();
+         CreateMap<AddOrderCommandRequest, AddOrderDto>().ReverseMap();
 
         #endregion
 
         #region OrderItem
 
         CreateMap<AddOrderItemCommandRequest, AddOrderItemDto>().ReverseMap();
-        CreateMap<AddSomeOrderItemCommandRequest, AddSomeOrderItemsDto>().ReverseMap();
+         CreateMap<AddSomeOrderItemCommandRequest, AddSomeOrderItemsDto>().ReverseMap();
 
         #endregion
 
@@ -62,6 +64,12 @@ public class Mappings : Profile
 
         CreateMap<RegisterCommandRequest, RegisterDto>().ReverseMap();
         CreateMap<LoginQueryRequest, LoginDto>().ReverseMap();
+
+        #endregion
+
+        #region Payment
+
+        CreateMap<AddPaymentCommandRequest, AddPaymentDto>().ReverseMap();
 
         #endregion
     }

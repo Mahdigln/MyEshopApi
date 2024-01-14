@@ -7,6 +7,7 @@ using Application.Features.Category.Commands.UpdateCategory;
 using Application.Features.Order.Commands.AddOrder;
 using Application.Features.OrderItem.Commands.AddOrderItem;
 using Application.Features.OrderItem.Commands.AddSomeOrderItems;
+using Application.Features.Payment.Commands.AddPayment;
 using Application.Features.Product.Commands.AddProduct;
 using Application.Features.Product.Commands.UpdateProduct;
 using Application.Response.Address;
@@ -68,6 +69,12 @@ public class Mappings : Profile
 
         CreateMap<RegisterCommandRequest, Customer>().ReverseMap();
         CreateMap<LoginQueryRequest, Customer>().ReverseMap();
+
+        #endregion
+
+        #region Payment
+
+        CreateMap<AddPaymentCommandRequest, Payment>().ReverseMap();
 
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿using Application.IRepositories;
+﻿                                                                                                                                                                     using Application.IRepositories;
 using Infrastructure.Authentication;
 using Infrastructure.Contexts;
 using Infrastructure.Repositories;
@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
             .AddScoped<IOrderRepository, OrderRepository>()
             .AddScoped<IJwtTokenGenerator, JwtTokenGenerator>()
             .AddScoped<IDateTimeProvider, DateTimeProvider>()
-            //.AddScoped<IPaymentRepository, PaymentRepository>()
+            .AddScoped<IPaymentRepository, PaymentRepository>()
             //.AddTransient<IProductRepository,CachingProductRepository>()
             .AddMemoryCache()
             .AddDbContext<ApplicationDbContext>(options => options

@@ -4,7 +4,7 @@ namespace WebApi.DTOs.Product
 {
     public class AddProductDto
     {
-        [Required]
+        //[Required]
         public string Name { get; set; }
         [Required]
         public decimal Price { get; set; }

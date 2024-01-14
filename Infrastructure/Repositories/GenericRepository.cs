@@ -13,7 +13,7 @@ public abstract class GenericRepository<T> : IGenericRepository<T> where T : cla
 {
     protected readonly ApplicationDbContext _context;
 
-    public GenericRepository(ApplicationDbContext context)
+     public GenericRepository(ApplicationDbContext context)
         => _context = context;
 
     [return: MaybeNull]

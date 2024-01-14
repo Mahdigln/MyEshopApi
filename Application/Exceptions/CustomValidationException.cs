@@ -11,5 +11,10 @@
             ErrorMessages = errorMessages;
             FriendlyErrorMassage = friendlyErrorMassage;
         }
+        public CustomValidationException(string friendlyErrorMassage)
+            : base(friendlyErrorMassage)
+        {
+            FriendlyErrorMassage = friendlyErrorMassage;
+        }
     }
 }
